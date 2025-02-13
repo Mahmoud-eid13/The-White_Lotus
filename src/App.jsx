@@ -1,32 +1,35 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react'
-import styled from 'styled-components'
-import GlobalStyles from './styles/GlobalStyles'
-import Button from './ui/Button'
-import Input from './ui/Input'
-
-const H1 = styled.h1`
-font-size: 30px;
-font-weight: 600;
-`
-
-
-const StyledApp = styled.div`
-  background-color: darkgray;
-  padding: 20px;
-`
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import GlobalStyles from "./styles/GlobalStyles"
+import Dashboard from "./pages/Dashboard"
+import Account from "./pages/Account"
+import Bookings from "./pages/Bookings"
+import Cabins from "./pages/Cabins"
+import Login from "./pages/Login"
+import Settings from "./pages/Settings"
+import Users from "./pages/Users"
+import PageNotFound from "./pages/PageNotFound"
+import AppLayout from "./ui/AppLayout"
 
 function App() {
   return (
     <>
-    <GlobalStyles/>
-    <StyledApp>
-     <H1>The White Lotus</H1>
-     <Button>Check in</Button>
-     <Button>Check out</Button>
-     <Input type='number' placeholder='Number of guests'></Input>
-    </StyledApp>
-    </>
+    <GlobalStyles />
+     <BrowserRouter>
+     <Routes>
+     <Route element={<AppLayout />}>
+     <Route index element={<Navigate replace to="dashboard" />} />
+      <Route path="dashboard" element={<Dashboard />} />
+      <Route path="account" element={<Account />} />
+      <Route path="bookings" element={<Bookings />} />
+      <Route path="cabins" element={<Cabins />} />
+      <Route path="settings" element={<Settings />} />
+      <Route path="users" element={<Users />} />
+      </Route>
+      <Route path="login" element={<Login/>} />
+      <Route path="*" element={<PageNotFound />} />
+     </Routes>
+     </BrowserRouter>
+     </>
   )
 }
 
