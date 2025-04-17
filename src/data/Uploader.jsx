@@ -95,9 +95,15 @@ async function createBookings() {
   });
 
   console.log(finalBookings);
-
   const { error } = await supabase.from("bookings").insert(finalBookings);
-  if (error) console.log(error.message);
+  if (error) {
+    console.error("Insert error:", error.message);
+    console.error("Details:", error.details);
+    console.error("Hint:", error.hint);
+  }
+
+  // const { error } = await supabase.from("bookings").insert(finalBookings);
+  // if (error) console.log(error.message);
 }
 
 function Uploader() {
