@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import styled from "styled-components";
 
 const StyledFormRow = styled.div`
@@ -37,14 +36,14 @@ const Error = styled.span`
   color: var(--color-red-700);
 `;
 
-function FormRow({label, error, children}) {
+function FormRow({ label, error, children }) {
   return (
     <StyledFormRow>
-    {label && <Label htmlFor={children.props.id}>{label}</Label>}
+      {label && <Label htmlFor={children.props.id}>{label}</Label>}
       {children}
-    {error && <Error>{error}</Error> }
-  </StyledFormRow>
-  )
+      {error && <Error>{error}</Error>}
+    </StyledFormRow>
+  );
 }
 
-export default FormRow
+export default FormRow;

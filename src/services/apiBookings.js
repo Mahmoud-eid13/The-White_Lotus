@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
-import { PAGE_SIZE } from "../utils/constants";
 import { getToday } from "../utils/helpers";
 import supabase from "./supabase";
+import { PAGE_SIZE } from "../utils/constants";
 
 export async function getBookings({ filter, sortBy, page }) {
   let query = supabase
@@ -15,7 +14,6 @@ export async function getBookings({ filter, sortBy, page }) {
   if (filter) query = query[filter.method || "eq"](filter.field, filter.value);
 
   // SORT
-
   if (sortBy)
     query = query.order(sortBy.field, {
       ascending: sortBy.direction === "asc",

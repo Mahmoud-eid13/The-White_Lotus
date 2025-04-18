@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
@@ -62,7 +61,6 @@ const PaginationButton = styled.button`
 
 function Pagination({ count }) {
   const [searchParams, setSearchParams] = useSearchParams();
-
   const currentPage = !searchParams.get("page")
     ? 1
     : Number(searchParams.get("page"));
@@ -87,17 +85,19 @@ function Pagination({ count }) {
 
   return (
     <StyledPagination>
-      <p>
-        showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to
-        {currentPage === pageCount ? count : currentPage * PAGE_SIZE}
-        <span></span> of <span>{count} </span>
-        results
-      </p>
+      <P>
+        Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to{" "}
+        <span>
+          {currentPage === pageCount ? count : currentPage * PAGE_SIZE}
+        </span>{" "}
+        of <span>{count}</span> results
+      </P>
 
       <Buttons>
         <PaginationButton onClick={prevPage} disabled={currentPage === 1}>
           <HiChevronLeft /> <span>Previous</span>
         </PaginationButton>
+
         <PaginationButton
           onClick={nextPage}
           disabled={currentPage === pageCount}
